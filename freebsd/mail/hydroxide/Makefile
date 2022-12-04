@@ -15,5 +15,6 @@ GO_MODULE=      github.com/emersion/hydroxide
 GO_TARGET=      ./cmd/hydroxide/
 GO_ENV+=        GOMAXPROCS=1
 PLIST_FILES=    bin/hydroxide
+USE_RC_SUBR=    hydroxide
 
 .include <bsd.port.mk>
