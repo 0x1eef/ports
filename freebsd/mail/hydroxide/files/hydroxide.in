@@ -1,0 +1,25 @@
+#!/bin/sh
+
+. /etc/rc.subr
+
+name=hydroxide
+rcvar=hydroxide_enable
+load_rc_config $name 
+
+command="/usr/local/bin/hydroxide"
+start_cmd="hydroxide_start"
+pidfile="/var/run/${name}.pid"
+
+##
+# Defaults
+hydroxide_enable=${hydroxide_enable:-"NO"}
+hydroxide_flags=${hydroxide_flags:-""}
+hydroxide_user=${hydroxide_user:-"nobody"}
+
+hydroxide_start() {
+	echo "Starting hydroxide"
+	HOME=$(eval echo "~$hydroxide_user")
+	/usr/sbin/daemon -cf -p ${pidfile} -u ${hydroxide_user} ${command} ${hydroxide_flags} serve 
+}
+
+run_rc_command "$1"
