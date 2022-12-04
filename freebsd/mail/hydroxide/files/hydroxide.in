@@ -13,13 +13,13 @@ pidfile="/var/run/${name}.pid"
 ##
 # Defaults
 hydroxide_enable=${hydroxide_enable:-"NO"}
-hydroxide_flags=${hydroxide_flags:-""}
-hydroxide_user=${hydroxide_user:-"nobody"}
+hydroxide_flags=${hydroxide_flags:-"-disable-carddav"}
+hydroxide_user=${hydroxide_user:-"_hydroxide"}
 
 hydroxide_start() {
-	echo "Starting hydroxide"
-	HOME=$(eval echo "~$hydroxide_user")
-	/usr/sbin/daemon -cf -p ${pidfile} -u ${hydroxide_user} ${command} ${hydroxide_flags} serve 
+    echo "Starting hydroxide"
+    HOME=$(eval echo "~$hydroxide_user")
+    /usr/sbin/daemon -cf -p ${pidfile} -u ${hydroxide_user} ${command} ${hydroxide_flags} serve
 }
 
 run_rc_command "$1"
