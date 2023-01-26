@@ -1,2 +1,4 @@
 #!/bin/sh
-pw userdel -n _hydroxide
+pw userdel \
+   -n _hydroxide \
+   -r
