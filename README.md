@@ -1,6 +1,6 @@
 ## About
 
-A collection of ports that don't exist in the official ports tree.
+A collection of Open|(Free|Hardened)BSD ports that I maintain.
 
 ## Ports
 
