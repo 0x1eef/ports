@@ -1,2 +1,6 @@
 #!/bin/sh
-pw useradd -n _hydroxide -d /home/_hydroxide -m -c "hydroxide daemon user" -s /sbin/nologin
+pw useradd \
+   -n _hydroxide \
+   -d /home/_hydroxide -m \
+   -c "Default user for running the hydroxide daemon" \
+   -s /sbin/nologin
