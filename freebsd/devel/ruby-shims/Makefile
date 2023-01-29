@@ -6,7 +6,7 @@ MAINTAINER=     0x1eef@protonmail.com
 COMMENT=        Ruby version redirection shim
 WWW=            https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/devel/ruby-shims
 LICENSE=        ISCL
-BATCH=			1
+BATCH=          1
 DISTDIR=        ${FILESDIR}
 DISTFILES=      rubyshim.sh
 BINS=           bin/ruby \
@@ -26,6 +26,7 @@ PLIST_FILES=    libexec/rubyshim ${BINS}
 
 do-extract:
 do-fetch:
+do-install:
 do-build:
 	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/ ${STAGEDIR}${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${DISTDIR}/rubyshim.sh ${STAGEDIR}${PREFIX}/libexec/rubyshim
