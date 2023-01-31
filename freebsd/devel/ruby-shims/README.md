@@ -11,8 +11,8 @@ can be called without a suffix (eg as `ruby` instead of `ruby32`, etc.)
 ## Expectations
 
 This port is expected to be used with the
-[/lang/ruby32-std](https://github.com/0x1eef/tree/main/FreeBSD/lang/ruby32-std),
-port and other similar `rubyXX-std` ports.
+[/lang/ruby32-std](https://github.com/0x1eef/tree/main/FreeBSD/lang/ruby32-std)
+port and other `rubyXX-std` ports.
 
 ## Changes
 
