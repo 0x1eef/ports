@@ -3,10 +3,11 @@
 The devel/ruby-shims port brings the OpenBSD port of the same name
 to FreeBSD.
 
-This port adds support for the `.ruby-version` file,
-and a system-wide version file at `/usr/local/etc/ruby-version`.
-With this port installed, the active Ruby version (and its executables)
-can be called without a suffix (eg as `ruby` instead of `ruby32`, etc.)
+## Features 
+
+* Adds support for a project-local `.ruby-version` file. 
+* Adds support for a system-wide `/usr/local/etc/ruby-version` file.
+* Adds shortcuts to the active Ruby's executables (eg `ruby` instead of `ruby32`, etc).
 
 ## Expectations
 
