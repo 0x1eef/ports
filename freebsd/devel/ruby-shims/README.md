@@ -5,7 +5,7 @@ to FreeBSD.
 
 The port adds support for the `.ruby-version` file,
 and a system-wide version file at `/usr/local/etc/ruby-version`.
-With the port installed, the active Ruby version, and its executables
+With the port installed, the active Ruby version (and its executables)
 can be called without a suffix (eg as `ruby` instead of `ruby32`, etc.)
 
 ## Expectations
