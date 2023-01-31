@@ -21,4 +21,4 @@ The following changes have been made to the original OpenBSD port:
 * Remove `set +o sh` from `rubyshim.sh`.
 * Modify `rubyshim.sh` to be compatible with `/bin/sh` on FreeBSD.
 * Change system-wide path from `/etc/ruby-version` to `/usr/local/etc/ruby-version`.
-* Replace backticks with `$()` syntax.
+* Replace backticks with `$()`.
