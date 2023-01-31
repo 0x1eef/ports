@@ -10,10 +10,9 @@ a suffix (eg as `ruby` instead of `ruby32`, etc.)
 
 ## Expectations
 
-The port is expected to be used with the
+This port is expected to be used with the
 [/lang/ruby32-std](https://github.com/0x1eef/tree/main/FreeBSD/lang/ruby32-std),
-[/lang/ruby31-std](https://github.com/0x1eef/tree/main/FreeBSD/lang/ruby31-std),
-etc ports.
+and similar `rubyXX-std` ports.
 
 ## Changes
 
