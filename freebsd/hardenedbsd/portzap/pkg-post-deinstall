@@ -1,0 +1,3 @@
+#!/bin/sh
+pw groupdel _portzap
+pw userdel _portzap -r
