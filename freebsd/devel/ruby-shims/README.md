@@ -1,4 +1,4 @@
-## About
+## devel/ruby-shims
 
 The devel/ruby-shims port brings the OpenBSD port of the same name
 to FreeBSD.
