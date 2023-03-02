@@ -1,6 +1,6 @@
 ## About
 
-A collection of Open|(Free|Hardened)BSD ports that I maintain.
+A collection of unofficial FreeBSD / OpenBSD ports.
 
 ## Ports
 
