@@ -12,7 +12,7 @@ to FreeBSD.
 ## Expectations
 
 It is expected that this port will be used with one or more `lang/rubyXX-std` ports 
-(eg [/lang/ruby32-std](https://github.com/0x1eef/tree/main/FreeBSD/lang/ruby32-std)).
+(eg [/lang/ruby32-std](https://github.com/0x1eef/ports/tree/main/freebsd/lang/ruby32-std)).
 
 ## Changes
 

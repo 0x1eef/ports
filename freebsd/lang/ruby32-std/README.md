@@ -22,3 +22,7 @@ The port installs the following executables:
 * bin/rdoc32
 * bin/ri32
 * bin/typeprof32
+
+## See also
+
+* [devel/ruby-shims](https://github.com/0x1eef/ports/tree/main/freebsd/devel/ruby-shims)
