@@ -19,3 +19,9 @@ A collection of unofficial FreeBSD / OpenBSD ports.
 ### OpenBSD
 
 None so far.
+
+## Sources
+
+* [GitHub](https://github.com/0x1eef/ports)
+* [GitLab](https://gitlab.com/0x1eef/ports)
+* [HardenedBSD (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/ports)
