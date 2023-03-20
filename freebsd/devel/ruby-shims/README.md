@@ -1,7 +1,8 @@
 ## devel/ruby-shims
 
 The devel/ruby-shims port brings the OpenBSD port of the same name
-to FreeBSD. It is assumed that the port will be used with the
+to FreeBSD. <br>
+It is assumed that the port will be used with the
 `lang/rubyXX-std` port(s)  (eg
 [/lang/ruby32-std](https://github.com/0x1eef/ports/tree/main/freebsd/lang/ruby32-std)
 ).
