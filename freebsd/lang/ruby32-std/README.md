@@ -1,9 +1,10 @@
 ## About
 
 The lang/ruby32-std port provides a standard installation of the
-Ruby 3.2 programming language on FreeBSD. The port installs Ruby's
-[default and bundled gems](https://www.stdgems.org), and includes their
-executables.
+Ruby 3.2 programming language on FreeBSD. <br>
+The port installs Ruby's
+[default and bundled gems](https://www.stdgems.org),
+and includes their executables.
 
 ## Executables
 
