@@ -22,6 +22,6 @@ None so far.
 
 ## Sources
 
+* [HardenedBSD (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/ports)
 * [GitHub](https://github.com/0x1eef/ports)
 * [GitLab](https://gitlab.com/0x1eef/ports)
-* [HardenedBSD (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/ports)
