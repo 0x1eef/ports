@@ -1,3 +1,8 @@
 #!/bin/sh
-pw groupdel _portzap
-pw userdel _portzap -r
+id -u _portzap > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    pw groupdel _portzap
+    pw userdel _portzap
+    echo "The _portzap user and group has been removed."
+    echo "You might want to delete /home/_portzap manually."
+fi
