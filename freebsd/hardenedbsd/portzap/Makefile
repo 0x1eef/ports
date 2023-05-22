@@ -1,5 +1,5 @@
 PORTNAME=           portzap
-PORTVERSION=        0.5.4
+PORTVERSION=        0.5.8
 DISTVERSIONPREFIX=  v
 CATEGORIES=         hardenedbsd
 
@@ -13,12 +13,14 @@ GH_ACCOUNT=     0x1eef
 BATCH=          yes
 NO_ARCH=        yes
 NO_BUILD=       yes
+MAN=	local/man/man1/portzap.1
 PLIST_FILES=	libexec/portzap/install-file \
 		libexec/portzap/install-directory \
 		libexec/portzap/commands/clone \
 		libexec/portzap/commands/pull \
 		libexec/portzap/commands/install \
 		libexec/portzap/functions/requirements.sh \
+		man/man1/portzap.1.gz \
 		bin/portzap
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/portzap
@@ -30,6 +32,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/commands/install ${STAGEDIR}${PREFIX}/libexec/portzap/commands/
 	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/install-file ${STAGEDIR}${PREFIX}/libexec/portzap/
 	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/install-directory ${STAGEDIR}${PREFIX}/libexec/portzap/
+	${INSTALL_SCRIPT} ${WRKSRC}/man/man1/portzap.1 ${STAGEDIR}${PREFIX}/man/man1/portzap.1
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/portzap ${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>
