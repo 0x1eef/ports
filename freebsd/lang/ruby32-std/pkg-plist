@@ -11,7 +11,7 @@ bin/rdoc32
 bin/ri32
 bin/ruby32
 bin/typeprof32
-include/ruby-3.2.0/amd64-freebsd14.0/rb_mjit_min_header-3.2.1.h
+include/ruby-3.2.0/amd64-freebsd14.0/rb_mjit_min_header-3.2.2.h
 include/ruby-3.2.0/amd64-freebsd14.0/ruby/config.h
 include/ruby-3.2.0/ruby.h
 include/ruby-3.2.0/ruby/assert.h
@@ -499,7 +499,6 @@ lib/ruby/3.2.0/bundler/templates/Executable
 lib/ruby/3.2.0/bundler/templates/Executable.bundler
 lib/ruby/3.2.0/bundler/templates/Executable.standalone
 lib/ruby/3.2.0/bundler/templates/Gemfile
-lib/ruby/3.2.0/bundler/templates/gems.rb
 lib/ruby/3.2.0/bundler/templates/newgem/CHANGELOG.md.tt
 lib/ruby/3.2.0/bundler/templates/newgem/CODE_OF_CONDUCT.md.tt
 lib/ruby/3.2.0/bundler/templates/newgem/Cargo.toml.tt
@@ -538,6 +537,7 @@ lib/ruby/3.2.0/bundler/ui/rg_proxy.rb
 lib/ruby/3.2.0/bundler/ui/shell.rb
 lib/ruby/3.2.0/bundler/ui/silent.rb
 lib/ruby/3.2.0/bundler/uri_credentials_filter.rb
+lib/ruby/3.2.0/bundler/uri_normalizer.rb
 lib/ruby/3.2.0/bundler/vendor/connection_pool/lib/connection_pool.rb
 lib/ruby/3.2.0/bundler/vendor/connection_pool/lib/connection_pool/timed_stack.rb
 lib/ruby/3.2.0/bundler/vendor/connection_pool/lib/connection_pool/version.rb
@@ -1115,6 +1115,7 @@ lib/ruby/3.2.0/rubygems/commands/cleanup_command.rb
 lib/ruby/3.2.0/rubygems/commands/contents_command.rb
 lib/ruby/3.2.0/rubygems/commands/dependency_command.rb
 lib/ruby/3.2.0/rubygems/commands/environment_command.rb
+lib/ruby/3.2.0/rubygems/commands/exec_command.rb
 lib/ruby/3.2.0/rubygems/commands/fetch_command.rb
 lib/ruby/3.2.0/rubygems/commands/generate_index_command.rb
 lib/ruby/3.2.0/rubygems/commands/help_command.rb
@@ -1378,8 +1379,8 @@ lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/debug-1.7.1/debug/debug.so
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/debug-1.7.1/gem.build_complete
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/rbs-2.8.2/gem.build_complete
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/rbs-2.8.2/rbs_extension.so
-lib/ruby/gems/3.2.0/gems/bundler-2.4.6/libexec/bundle
-lib/ruby/gems/3.2.0/gems/bundler-2.4.6/libexec/bundler
+lib/ruby/gems/3.2.0/gems/bundler-2.4.10/libexec/bundle
+lib/ruby/gems/3.2.0/gems/bundler-2.4.10/libexec/bundler
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/CONTRIBUTING.md
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/Gemfile
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/LICENSE.txt
@@ -2218,7 +2219,7 @@ lib/ruby/gems/3.2.0/specifications/default/abbrev-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/base64-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/benchmark-0.2.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/bigdecimal-3.1.3.gemspec
-lib/ruby/gems/3.2.0/specifications/default/bundler-2.4.6.gemspec
+lib/ruby/gems/3.2.0/specifications/default/bundler-2.4.10.gemspec
 lib/ruby/gems/3.2.0/specifications/default/cgi-0.3.6.gemspec
 lib/ruby/gems/3.2.0/specifications/default/csv-3.2.6.gemspec
 lib/ruby/gems/3.2.0/specifications/default/date-3.3.3.gemspec
@@ -2276,12 +2277,12 @@ lib/ruby/gems/3.2.0/specifications/default/strscan-3.0.5.gemspec
 lib/ruby/gems/3.2.0/specifications/default/syntax_suggest-1.0.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/syslog-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tempfile-0.1.3.gemspec
-lib/ruby/gems/3.2.0/specifications/default/time-0.2.1.gemspec
+lib/ruby/gems/3.2.0/specifications/default/time-0.2.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/timeout-0.3.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tmpdir-0.1.3.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tsort-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/un-0.2.1.gemspec
-lib/ruby/gems/3.2.0/specifications/default/uri-0.12.0.gemspec
+lib/ruby/gems/3.2.0/specifications/default/uri-0.12.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/weakref-0.1.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/yaml-0.2.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/zlib-3.0.0.gemspec
@@ -4829,6 +4830,18 @@ share/ri/3.2.0/system/Gem/Commands/EnvironmentCommand/cdesc-EnvironmentCommand.r
 share/ri/3.2.0/system/Gem/Commands/EnvironmentCommand/execute-i.ri
 share/ri/3.2.0/system/Gem/Commands/EnvironmentCommand/git_path-i.ri
 share/ri/3.2.0/system/Gem/Commands/EnvironmentCommand/new-c.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/activate%21-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/cdesc-ExecCommand.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/check_executable-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/execute-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/handle_options-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/install-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/install_if_needed-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/load%21-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/new-c.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/print_command-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/set_gem_exec_install_paths-i.ri
+share/ri/3.2.0/system/Gem/Commands/ExecCommand/suppress_always_install-i.ri
 share/ri/3.2.0/system/Gem/Commands/FetchCommand/cdesc-FetchCommand.ri
 share/ri/3.2.0/system/Gem/Commands/FetchCommand/execute-i.ri
 share/ri/3.2.0/system/Gem/Commands/FetchCommand/new-c.ri
@@ -5104,6 +5117,7 @@ share/ri/3.2.0/system/Gem/Ext/Builder/cdesc-Builder.ri
 share/ri/3.2.0/system/Gem/Ext/Builder/class_name-c.ri
 share/ri/3.2.0/system/Gem/Ext/Builder/make-c.ri
 share/ri/3.2.0/system/Gem/Ext/Builder/new-c.ri
+share/ri/3.2.0/system/Gem/Ext/Builder/ruby-c.ri
 share/ri/3.2.0/system/Gem/Ext/Builder/run-c.ri
 share/ri/3.2.0/system/Gem/Ext/CargoBuilder/DylibNotFoundError/cdesc-DylibNotFoundError.ri
 share/ri/3.2.0/system/Gem/Ext/CargoBuilder/DylibNotFoundError/new-c.ri
@@ -5395,10 +5409,13 @@ share/ri/3.2.0/system/Gem/Package/TarReader/Entry/getc-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/header-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/length-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/new-c.ri
+share/ri/3.2.0/system/Gem/Package/TarReader/Entry/open-c.ri
+share/ri/3.2.0/system/Gem/Package/TarReader/Entry/pos%3d-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/pos-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/read-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/readpartial-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/rewind-i.ri
+share/ri/3.2.0/system/Gem/Package/TarReader/Entry/seek-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/size-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/Entry/symlink%3f-i.ri
 share/ri/3.2.0/system/Gem/Package/TarReader/UnexpectedEOF/cdesc-UnexpectedEOF.ri
@@ -6271,6 +6288,7 @@ share/ri/3.2.0/system/Gem/Specification/find_active_stub_by_path-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_all_by_full_name-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_all_by_name-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_all_satisfiers-i.ri
+share/ri/3.2.0/system/Gem/Specification/find_by_full_name-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_by_name-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_by_path-c.ri
 share/ri/3.2.0/system/Gem/Specification/find_in_unresolved-c.ri
@@ -14571,16 +14589,15 @@ share/ri/3.2.0/system/win32/page-README_win32.ri
 @dir lib/ruby/gems/3.2.0/gems/syntax_suggest-1.0.2
 @dir lib/ruby/gems/3.2.0/gems/syslog-0.1.1
 @dir lib/ruby/gems/3.2.0/gems/tempfile-0.1.3
-@dir lib/ruby/gems/3.2.0/gems/time-0.2.1
+@dir lib/ruby/gems/3.2.0/gems/time-0.2.2
 @dir lib/ruby/gems/3.2.0/gems/timeout-0.3.1
 @dir lib/ruby/gems/3.2.0/gems/tmpdir-0.1.3
 @dir lib/ruby/gems/3.2.0/gems/tsort-0.1.1
 @dir lib/ruby/gems/3.2.0/gems/un-0.2.1
-@dir lib/ruby/gems/3.2.0/gems/uri-0.12.0
+@dir lib/ruby/gems/3.2.0/gems/uri-0.12.1
 @dir lib/ruby/gems/3.2.0/gems/weakref-0.1.2
 @dir lib/ruby/gems/3.2.0/gems/yaml-0.2.1
 @dir lib/ruby/gems/3.2.0/gems/zlib-3.0.0
 @dir lib/ruby/gems/3.2.0/plugins
 @dir lib/ruby/site_ruby/3.2.0/amd64-freebsd14.0
 @dir lib/ruby/vendor_ruby/3.2.0/amd64-freebsd14.0
-
