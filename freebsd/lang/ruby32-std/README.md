@@ -24,6 +24,13 @@ The port installs the following executables:
 * bin/ri32
 * bin/typeprof32
 
+## Notes
+
+On [hardenedbsd](https://hardenedbsd.org), the port must be built with
+`hardening.harden_rtld` set to 0, or the build will encounter an error:
+
+    # sysctl hardening.harden_rtld=0
+
 ## See also
 
 * [devel/ruby-shims](https://github.com/0x1eef/ports/tree/main/freebsd/devel/ruby-shims)
