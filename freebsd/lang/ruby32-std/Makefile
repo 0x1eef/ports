@@ -1,5 +1,6 @@
 PORTNAME= ruby-std
 CATEGORIES= lang ruby
+DISTNAME=ruby-${DISTVERSION}
 DISTVERSION= 3.2.2
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.2/
 
