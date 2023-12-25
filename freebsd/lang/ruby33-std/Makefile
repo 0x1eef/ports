@@ -13,7 +13,7 @@ LICENSE_FILE_RUBY= ${WRKSRC}/COPYING
 
 GNU_CONFIGURE=  yes
 CONFIGURE_ARGS= --with-soname=${RUBY_SONAME} \
-	--program-suffix=${RUBY_MAJOR} \
+	--program-suffix=${RUBY_MINOR} \
 	--enable-pthread \
 	--enable-shared \
 	--disable-yjit \
