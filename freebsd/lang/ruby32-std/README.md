@@ -26,10 +26,10 @@ The port installs the following executables:
 
 ## Notes
 
-On [hardenedbsd](https://hardenedbsd.org) - the port must be built with
-`hardening.harden_rtld` set to 0, or the build will encounter an error:
+* On [hardenedbsd](https://hardenedbsd.org): set `hardening.harden_rtld` set to 0,
+  or the build will encounter an error:
 
-    # sysctl hardening.harden_rtld=0
+        # sysctl hardening.harden_rtld=0
 
 ## See also
 
