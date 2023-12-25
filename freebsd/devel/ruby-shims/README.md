@@ -14,9 +14,7 @@ It is assumed that the port will be used with the
 * Adds support for a system-wide `/usr/local/etc/ruby-version` file.
 * Adds shortcuts to the active Ruby's executables (eg `ruby` instead of `ruby32`, etc).
 
-## Changes
-
-The following changes have been made to the original OpenBSD port:
+## Changelog
 
 * Remove `set +o sh` from `rubyshim.sh`.
 * Modify `rubyshim.sh` to be compatible with `/bin/sh` on FreeBSD.
