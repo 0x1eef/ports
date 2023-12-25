@@ -21,6 +21,7 @@ CONFIGURE_ARGS= --with-soname=${RUBY_SONAME} \
 	--program-suffix=${RUBY_MAJOR} \
 	--enable-pthread \
 	--enable-shared \
+	--disable-yjit \
 	--enable-rjit \
 	--prefix="${PREFIX}"
 CFLAGS+=-I/usr/include -I${PREFIX}/include
