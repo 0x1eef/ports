@@ -1,6 +1,6 @@
 PORTNAME= ruby32-std
-STDRUBY_VER=32
-STDRUBY_SONAME="ruby${STDRUBY_VER}"
+RUBYSTD_VER=32
+RUBYSTD_SONAME="ruby${RUBYSTD_VER}"
 DISTVERSION= 3.2.2
 DISTNAME=ruby-${DISTVERSION}
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.2/
@@ -12,8 +12,8 @@ LICENSE_FILE_BSD2CLAUSE= ${WRKSRC}/BSDL
 LICENSE_FILE_RUBY= ${WRKSRC}/COPYING
 
 GNU_CONFIGURE=  yes
-CONFIGURE_ARGS= --with-soname=${STDRUBY_SONAME} \
-	--program-suffix=${STDRUBY_VER} \
+CONFIGURE_ARGS= --with-soname=${RUBYSTD_SONAME} \
+	--program-suffix=${RUBYSTD_VER} \
 	--enable-pthread \
 	--enable-shared \
 	--disable-yjit \
