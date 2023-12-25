@@ -1,6 +1,6 @@
 PORTNAME= ruby33-std
-RUBY_MINOR=33
-RUBY_SONAME="ruby${RUBY_MINOR}"
+STDRUBY_VER=33
+STDRUBY_SONAME="ruby${STDRUBY_VER}"
 DISTVERSION= 3.3.0
 DISTNAME=ruby-${DISTVERSION}
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.3/
@@ -12,8 +12,8 @@ LICENSE_FILE_BSD2CLAUSE= ${WRKSRC}/BSDL
 LICENSE_FILE_RUBY= ${WRKSRC}/COPYING
 
 GNU_CONFIGURE=  yes
-CONFIGURE_ARGS= --with-soname=${RUBY_SONAME} \
-	--program-suffix=${RUBY_MINOR} \
+CONFIGURE_ARGS= --with-soname=${STDRUBY_SONAME} \
+	--program-suffix=${STDRUBY_VER} \
 	--enable-pthread \
 	--enable-shared \
 	--disable-yjit \
