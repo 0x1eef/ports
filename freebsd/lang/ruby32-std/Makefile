@@ -1,12 +1,10 @@
 PORTNAME= ruby32-std
-CATEGORIES= lang ruby
-DISTNAME=ruby-${DISTVERSION}
+RUBY_MINOR=32
+RUBY_SONAME="ruby${RUBY_MINOR}"
 DISTVERSION= 3.2.2
+DISTNAME=ruby-${DISTVERSION}
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.2/
-
-MAINTAINER= 0x1eef@protonmail.com
-COMMENT= A dynamic, open source programming language with a focus on simplicity and productivity.
-WWW= https://www.ruby-lang.org/en/
+CATEGORIES= lang ruby
 
 LICENSE= BSD2CLAUSE RUBY
 LICENSE_COMB= dual
@@ -14,36 +12,23 @@ LICENSE_FILE_BSD2CLAUSE= ${WRKSRC}/BSDL
 LICENSE_FILE_RUBY= ${WRKSRC}/COPYING
 
 GNU_CONFIGURE=  yes
-CONFIGURE_ARGS= --enable-pthread --enable-shared --prefix="${PREFIX}" --program-suffix=32
+CONFIGURE_ARGS= --with-soname=${RUBY_SONAME} \
+	--program-suffix=${RUBY_MINOR} \
+	--enable-pthread \
+	--enable-shared \
+	--disable-yjit \
+	--enable-rjit \
+	--prefix="${PREFIX}"
+CFLAGS+=-I/usr/include -I${PREFIX}/include
+USE_LDCONFIG=yes
+
 USES=           ssl tar:xz
 BUILD_DEPENDS=  libffi>=0:devel/libffi
 LIB_DEPENDS=    libyaml.so:textproc/libyaml
 RUN_DEPENDS=    libffi>=0:devel/libffi
-USE_LDCONFIG=	yes
 
-##
-# Options
-OPTIONS_DEFINE= LIBEDIT READLINE YJIT
-OPTIONS_DEFAULT= LIBEDIT
-OPTIONS_SINGLE= EDIT
-OPTIONS_SINGLE_EDIT= LIBEDIT READLINE
-LIBEDIT_DESC= Use libedit
-READLINE_DESC= Use libreadline
-YJIT_DESC= Enable YJIT
-
-##
-# libedit
-LIBEDIT_USES= libedit
-LIBEDIT_CONFIGURE_ON= --enable-libedit --with-libedit-dir=${LOCALBASE}
-
-##
-# Readline
-READLINE_USES= readline
-READLINE_CONFIGURE_ON= --disable-libedit --with-readline-dir=${LOCALBASE}
-
-##
-# YJIT
-YJIT_BUILD_DEPENDS= ${RUST_DEFAULT}>=1.58.0:lang/${RUST_DEFAULT}
-YJIT_CONFIGURE_ENABLE= yjit
+MAINTAINER= 0x1eef@protonmail.com
+COMMENT= A dynamic, open source programming language with a focus on simplicity and productivity.
+WWW= https://www.ruby-lang.org/en/
 
 .include <bsd.port.mk>

@@ -204,8 +204,8 @@ include/ruby-3.2.0/ruby/thread_native.h
 include/ruby-3.2.0/ruby/util.h
 include/ruby-3.2.0/ruby/version.h
 include/ruby-3.2.0/ruby/vm.h
-lib/libruby.so
-lib/libruby.so.32
+lib/libruby32.so
+lib/libruby32.so.32
 lib/ruby/3.2.0/English.rb
 lib/ruby/3.2.0/abbrev.rb
 lib/ruby/3.2.0/amd64-freebsd14.0/bigdecimal.so
@@ -14601,3 +14601,4 @@ share/ri/3.2.0/system/win32/page-README_win32.ri
 @dir lib/ruby/gems/3.2.0/plugins
 @dir lib/ruby/site_ruby/3.2.0/amd64-freebsd14.0
 @dir lib/ruby/vendor_ruby/3.2.0/amd64-freebsd14.0
+@dir share/doc/ruby

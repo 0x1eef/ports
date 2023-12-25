@@ -34,3 +34,8 @@ On [hardenedbsd](https://hardenedbsd.org) - the port must be built with
 ## See also
 
 * [devel/ruby-shims](https://github.com/0x1eef/ports/tree/main/freebsd/devel/ruby-shims)
+
+## Changelog
+
+* 2023/12/25: Rewrite `Makefile`.
+* 2023/12/13: Add v3.2.2
