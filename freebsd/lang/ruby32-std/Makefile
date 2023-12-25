@@ -1,4 +1,4 @@
-PORTNAME= ruby-std
+PORTNAME= ruby32-std
 CATEGORIES= lang ruby
 DISTNAME=ruby-${DISTVERSION}
 DISTVERSION= 3.2.2
