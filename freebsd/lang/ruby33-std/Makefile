@@ -1,15 +1,10 @@
 PORTNAME= ruby33-std
+RUBY_MINOR=33
+RUBY_SONAME="ruby${RUBY_MINOR}"
 DISTVERSION= 3.3.0
-RUBY_MAJOR=33
-RUBY_SONAME="ruby${RUBY_MAJOR}"
-CATEGORIES= lang ruby
 DISTNAME=ruby-${DISTVERSION}
-
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.3/
-
-MAINTAINER= 0x1eef@protonmail.com
-COMMENT= A dynamic, open source programming language with a focus on simplicity and productivity.
-WWW= https://www.ruby-lang.org/en/
+CATEGORIES= lang ruby
 
 LICENSE= BSD2CLAUSE RUBY
 LICENSE_COMB= dual
@@ -31,5 +26,9 @@ USES=           ssl tar:xz
 BUILD_DEPENDS=  libffi>=0:devel/libffi
 LIB_DEPENDS=    libyaml.so:textproc/libyaml
 RUN_DEPENDS=    libffi>=0:devel/libffi
+
+MAINTAINER= 0x1eef@protonmail.com
+COMMENT= A dynamic, open source programming language with a focus on simplicity and productivity.
+WWW= https://www.ruby-lang.org/en/
 
 .include <bsd.port.mk>
