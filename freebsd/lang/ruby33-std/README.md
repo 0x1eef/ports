@@ -32,6 +32,10 @@ On [hardenedbsd](https://hardenedbsd.org), the port must be built with
 
     # sysctl hardening.harden_rtld=0
 
+## Changelog
+
+* 2023/12/25: add v3.3.0
+
 ## See also
 
 * [devel/ruby-shims](https://github.com/0x1eef/ports/tree/main/freebsd/devel/ruby-shims)
