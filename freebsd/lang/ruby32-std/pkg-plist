@@ -10,8 +10,9 @@ bin/rdbg32
 bin/rdoc32
 bin/ri32
 bin/ruby32
+bin/syntax_suggest32
 bin/typeprof32
-include/ruby-3.2.0/amd64-freebsd14.0/rb_mjit_min_header-3.2.2.h
+include/ruby-3.2.0/amd64-freebsd14.0/rb_mjit_min_header-3.2.3.h
 include/ruby-3.2.0/amd64-freebsd14.0/ruby/config.h
 include/ruby-3.2.0/ruby.h
 include/ruby-3.2.0/ruby/assert.h
@@ -475,6 +476,7 @@ lib/ruby/3.2.0/bundler/rubygems_ext.rb
 lib/ruby/3.2.0/bundler/rubygems_gem_installer.rb
 lib/ruby/3.2.0/bundler/rubygems_integration.rb
 lib/ruby/3.2.0/bundler/runtime.rb
+lib/ruby/3.2.0/bundler/safe_marshal.rb
 lib/ruby/3.2.0/bundler/self_manager.rb
 lib/ruby/3.2.0/bundler/settings.rb
 lib/ruby/3.2.0/bundler/settings/validator.rb
@@ -1169,6 +1171,9 @@ lib/ruby/3.2.0/rubygems/ext/ext_conf_builder.rb
 lib/ruby/3.2.0/rubygems/ext/rake_builder.rb
 lib/ruby/3.2.0/rubygems/gem_runner.rb
 lib/ruby/3.2.0/rubygems/gemcutter_utilities.rb
+lib/ruby/3.2.0/rubygems/gemcutter_utilities/webauthn_listener.rb
+lib/ruby/3.2.0/rubygems/gemcutter_utilities/webauthn_listener/response.rb
+lib/ruby/3.2.0/rubygems/gemcutter_utilities/webauthn_poller.rb
 lib/ruby/3.2.0/rubygems/indexer.rb
 lib/ruby/3.2.0/rubygems/install_default_message.rb
 lib/ruby/3.2.0/rubygems/install_message.rb
@@ -1272,6 +1277,7 @@ lib/ruby/3.2.0/rubygems/security/policy.rb
 lib/ruby/3.2.0/rubygems/security/signer.rb
 lib/ruby/3.2.0/rubygems/security/trust_dir.rb
 lib/ruby/3.2.0/rubygems/security_option.rb
+lib/ruby/3.2.0/rubygems/shellwords.rb
 lib/ruby/3.2.0/rubygems/source.rb
 lib/ruby/3.2.0/rubygems/source/git.rb
 lib/ruby/3.2.0/rubygems/source/installed.rb
@@ -1311,6 +1317,8 @@ lib/ruby/3.2.0/syntax_suggest.rb
 lib/ruby/3.2.0/syntax_suggest/api.rb
 lib/ruby/3.2.0/syntax_suggest/around_block_scan.rb
 lib/ruby/3.2.0/syntax_suggest/block_expand.rb
+lib/ruby/3.2.0/syntax_suggest/capture/before_after_keyword_ends.rb
+lib/ruby/3.2.0/syntax_suggest/capture/falling_indent_lines.rb
 lib/ruby/3.2.0/syntax_suggest/capture_code_context.rb
 lib/ruby/3.2.0/syntax_suggest/clean_document.rb
 lib/ruby/3.2.0/syntax_suggest/cli.rb
@@ -1330,6 +1338,7 @@ lib/ruby/3.2.0/syntax_suggest/pathname_from_message.rb
 lib/ruby/3.2.0/syntax_suggest/priority_engulf_queue.rb
 lib/ruby/3.2.0/syntax_suggest/priority_queue.rb
 lib/ruby/3.2.0/syntax_suggest/ripper_errors.rb
+lib/ruby/3.2.0/syntax_suggest/scan_history.rb
 lib/ruby/3.2.0/syntax_suggest/unvisited_lines.rb
 lib/ruby/3.2.0/syntax_suggest/version.rb
 lib/ruby/3.2.0/syslog/logger.rb
@@ -1363,10 +1372,10 @@ lib/ruby/3.2.0/yaml/store.rb
 lib/ruby/gems/3.2.0/cache/debug-1.7.1.gem
 lib/ruby/gems/3.2.0/cache/matrix-0.4.2.gem
 lib/ruby/gems/3.2.0/cache/minitest-5.16.3.gem
-lib/ruby/gems/3.2.0/cache/net-ftp-0.2.0.gem
-lib/ruby/gems/3.2.0/cache/net-imap-0.3.4.gem
+lib/ruby/gems/3.2.0/cache/net-ftp-0.2.1.gem
+lib/ruby/gems/3.2.0/cache/net-imap-0.3.4.1.gem
 lib/ruby/gems/3.2.0/cache/net-pop-0.1.2.gem
-lib/ruby/gems/3.2.0/cache/net-smtp-0.3.3.gem
+lib/ruby/gems/3.2.0/cache/net-smtp-0.3.4.gem
 lib/ruby/gems/3.2.0/cache/power_assert-2.0.3.gem
 lib/ruby/gems/3.2.0/cache/prime-0.1.2.gem
 lib/ruby/gems/3.2.0/cache/rake-13.0.6.gem
@@ -1379,8 +1388,8 @@ lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/debug-1.7.1/debug/debug.so
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/debug-1.7.1/gem.build_complete
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/rbs-2.8.2/gem.build_complete
 lib/ruby/gems/3.2.0/extensions/amd64-freebsd-14/3.2.0/rbs-2.8.2/rbs_extension.so
-lib/ruby/gems/3.2.0/gems/bundler-2.4.10/libexec/bundle
-lib/ruby/gems/3.2.0/gems/bundler-2.4.10/libexec/bundler
+lib/ruby/gems/3.2.0/gems/bundler-2.4.19/libexec/bundle
+lib/ruby/gems/3.2.0/gems/bundler-2.4.19/libexec/bundler
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/CONTRIBUTING.md
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/Gemfile
 lib/ruby/gems/3.2.0/gems/debug-1.7.1/LICENSE.txt
@@ -1448,47 +1457,47 @@ lib/ruby/gems/3.2.0/gems/minitest-5.16.3/test/minitest/test_minitest_reporter.rb
 lib/ruby/gems/3.2.0/gems/minitest-5.16.3/test/minitest/test_minitest_spec.rb
 lib/ruby/gems/3.2.0/gems/minitest-5.16.3/test/minitest/test_minitest_test.rb
 lib/ruby/gems/3.2.0/gems/minitest-5.16.3/test/minitest/test_minitest_test_task.rb
-lib/ruby/gems/3.2.0/gems/net-ftp-0.2.0/Gemfile
-lib/ruby/gems/3.2.0/gems/net-ftp-0.2.0/LICENSE.txt
-lib/ruby/gems/3.2.0/gems/net-ftp-0.2.0/README.md
-lib/ruby/gems/3.2.0/gems/net-ftp-0.2.0/Rakefile
-lib/ruby/gems/3.2.0/gems/net-ftp-0.2.0/lib/net/ftp.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/Gemfile
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/LICENSE.txt
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/README.md
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/Rakefile
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/benchmarks/stringprep.yml
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/benchmarks/table-regexps.yml
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/docs/styles.css
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators/cram_md5.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators/digest_md5.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators/login.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators/plain.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/authenticators/xoauth2.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/command_data.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/data_encoding.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/errors.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/flags.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/response_data.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/response_parser.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/sasl.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/sasl/saslprep.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/sasl/saslprep_tables.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/sasl/stringprep.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/lib/net/imap/sasl/stringprep_tables.rb
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/rakelib/rdoc.rake
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/rakelib/rfcs.rake
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/rakelib/saslprep.rake
-lib/ruby/gems/3.2.0/gems/net-imap-0.3.4/rakelib/string_prep_tables_generator.rb
+lib/ruby/gems/3.2.0/gems/net-ftp-0.2.1/Gemfile
+lib/ruby/gems/3.2.0/gems/net-ftp-0.2.1/LICENSE.txt
+lib/ruby/gems/3.2.0/gems/net-ftp-0.2.1/README.md
+lib/ruby/gems/3.2.0/gems/net-ftp-0.2.1/Rakefile
+lib/ruby/gems/3.2.0/gems/net-ftp-0.2.1/lib/net/ftp.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/Gemfile
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/LICENSE.txt
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/README.md
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/Rakefile
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/benchmarks/stringprep.yml
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/benchmarks/table-regexps.yml
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/docs/styles.css
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators/cram_md5.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators/digest_md5.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators/login.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators/plain.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/authenticators/xoauth2.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/command_data.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/data_encoding.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/errors.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/flags.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/response_data.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/response_parser.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/sasl.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/sasl/saslprep.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/sasl/saslprep_tables.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/sasl/stringprep.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/lib/net/imap/sasl/stringprep_tables.rb
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/rakelib/rdoc.rake
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/rakelib/rfcs.rake
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/rakelib/saslprep.rake
+lib/ruby/gems/3.2.0/gems/net-imap-0.3.4.1/rakelib/string_prep_tables_generator.rb
 lib/ruby/gems/3.2.0/gems/net-pop-0.1.2/Gemfile
 lib/ruby/gems/3.2.0/gems/net-pop-0.1.2/LICENSE.txt
 lib/ruby/gems/3.2.0/gems/net-pop-0.1.2/README.md
 lib/ruby/gems/3.2.0/gems/net-pop-0.1.2/Rakefile
 lib/ruby/gems/3.2.0/gems/net-pop-0.1.2/lib/net/pop.rb
-lib/ruby/gems/3.2.0/gems/net-smtp-0.3.3/LICENSE.txt
-lib/ruby/gems/3.2.0/gems/net-smtp-0.3.3/lib/net/smtp.rb
+lib/ruby/gems/3.2.0/gems/net-smtp-0.3.4/LICENSE.txt
+lib/ruby/gems/3.2.0/gems/net-smtp-0.3.4/lib/net/smtp.rb
 lib/ruby/gems/3.2.0/gems/power_assert-2.0.3/BSDL
 lib/ruby/gems/3.2.0/gems/power_assert-2.0.3/COPYING
 lib/ruby/gems/3.2.0/gems/power_assert-2.0.3/Gemfile
@@ -2123,6 +2132,7 @@ lib/ruby/gems/3.2.0/gems/rss-0.2.9/test/test_taxonomy.rb
 lib/ruby/gems/3.2.0/gems/rss-0.2.9/test/test_to_s.rb
 lib/ruby/gems/3.2.0/gems/rss-0.2.9/test/test_trackback.rb
 lib/ruby/gems/3.2.0/gems/rss-0.2.9/test/test_xml-stylesheet.rb
+lib/ruby/gems/3.2.0/gems/syntax_suggest-1.1.0/exe/syntax_suggest
 lib/ruby/gems/3.2.0/gems/test-unit-3.5.7/BSDL
 lib/ruby/gems/3.2.0/gems/test-unit-3.5.7/COPYING
 lib/ruby/gems/3.2.0/gems/test-unit-3.5.7/PSFL
@@ -2219,7 +2229,7 @@ lib/ruby/gems/3.2.0/specifications/default/abbrev-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/base64-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/benchmark-0.2.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/bigdecimal-3.1.3.gemspec
-lib/ruby/gems/3.2.0/specifications/default/bundler-2.4.10.gemspec
+lib/ruby/gems/3.2.0/specifications/default/bundler-2.4.19.gemspec
 lib/ruby/gems/3.2.0/specifications/default/cgi-0.3.6.gemspec
 lib/ruby/gems/3.2.0/specifications/default/csv-3.2.6.gemspec
 lib/ruby/gems/3.2.0/specifications/default/date-3.3.3.gemspec
@@ -2245,7 +2255,7 @@ lib/ruby/gems/3.2.0/specifications/default/irb-1.6.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/json-2.6.3.gemspec
 lib/ruby/gems/3.2.0/specifications/default/logger-1.5.3.gemspec
 lib/ruby/gems/3.2.0/specifications/default/mutex_m-0.1.2.gemspec
-lib/ruby/gems/3.2.0/specifications/default/net-http-0.3.2.gemspec
+lib/ruby/gems/3.2.0/specifications/default/net-http-0.4.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/net-protocol-0.2.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/nkf-0.1.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/observer-0.1.1.gemspec
@@ -2274,7 +2284,7 @@ lib/ruby/gems/3.2.0/specifications/default/shellwords-0.1.0.gemspec
 lib/ruby/gems/3.2.0/specifications/default/singleton-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/stringio-3.0.4.gemspec
 lib/ruby/gems/3.2.0/specifications/default/strscan-3.0.5.gemspec
-lib/ruby/gems/3.2.0/specifications/default/syntax_suggest-1.0.2.gemspec
+lib/ruby/gems/3.2.0/specifications/default/syntax_suggest-1.1.0.gemspec
 lib/ruby/gems/3.2.0/specifications/default/syslog-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tempfile-0.1.3.gemspec
 lib/ruby/gems/3.2.0/specifications/default/time-0.2.2.gemspec
@@ -2282,16 +2292,16 @@ lib/ruby/gems/3.2.0/specifications/default/timeout-0.3.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tmpdir-0.1.3.gemspec
 lib/ruby/gems/3.2.0/specifications/default/tsort-0.1.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/un-0.2.1.gemspec
-lib/ruby/gems/3.2.0/specifications/default/uri-0.12.1.gemspec
+lib/ruby/gems/3.2.0/specifications/default/uri-0.12.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/weakref-0.1.2.gemspec
 lib/ruby/gems/3.2.0/specifications/default/yaml-0.2.1.gemspec
 lib/ruby/gems/3.2.0/specifications/default/zlib-3.0.0.gemspec
 lib/ruby/gems/3.2.0/specifications/matrix-0.4.2.gemspec
 lib/ruby/gems/3.2.0/specifications/minitest-5.16.3.gemspec
-lib/ruby/gems/3.2.0/specifications/net-ftp-0.2.0.gemspec
-lib/ruby/gems/3.2.0/specifications/net-imap-0.3.4.gemspec
+lib/ruby/gems/3.2.0/specifications/net-ftp-0.2.1.gemspec
+lib/ruby/gems/3.2.0/specifications/net-imap-0.3.4.1.gemspec
 lib/ruby/gems/3.2.0/specifications/net-pop-0.1.2.gemspec
-lib/ruby/gems/3.2.0/specifications/net-smtp-0.3.3.gemspec
+lib/ruby/gems/3.2.0/specifications/net-smtp-0.3.4.gemspec
 lib/ruby/gems/3.2.0/specifications/power_assert-2.0.3.gemspec
 lib/ruby/gems/3.2.0/specifications/prime-0.1.2.gemspec
 lib/ruby/gems/3.2.0/specifications/rake-13.0.6.gemspec
@@ -5178,13 +5188,60 @@ share/ri/3.2.0/system/Gem/GemRunner/cdesc-GemRunner.ri
 share/ri/3.2.0/system/Gem/GemRunner/do_configuration-i.ri
 share/ri/3.2.0/system/Gem/GemRunner/new-c.ri
 share/ri/3.2.0/system/Gem/GemRunner/run-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/BadRequestResponse/body-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/BadRequestResponse/cdesc-BadRequestResponse.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/BadRequestResponse/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/BadRequestResponse/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/MethodNotAllowedResponse/add_access_control_headers-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/MethodNotAllowedResponse/cdesc-MethodNotAllowedResponse.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/MethodNotAllowedResponse/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/MethodNotAllowedResponse/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NoContentResponse/cdesc-NoContentResponse.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NoContentResponse/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NoContentResponse/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NotFoundResponse/cdesc-NotFoundResponse.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NotFoundResponse/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/NotFoundResponse/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/OkResponse/body-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/OkResponse/cdesc-OkResponse.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/OkResponse/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/OkResponse/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/add_access_control_headers-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/add_body-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/add_connection_header-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/body-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/build_http_response-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/cdesc-Response.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/for-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/http_response-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/new-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/reason_phrase-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/Response/to_s-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/SocketResponder/cdesc-SocketResponder.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/SocketResponder/new-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/SocketResponder/send-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/cdesc-WebauthnListener.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/host-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/listener_thread-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/new-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/parse_otp_from_uri-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/root_path%3f-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnListener/wait_for_otp_code-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/cdesc-WebauthnPoller.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/host-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/new-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/options-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/poll_for_otp-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/poll_thread-c.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/WebauthnPoller/webauthn_verification_poll_response-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/add_key_option-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/add_otp_option-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/api_key-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/api_key_forbidden%3f-i.ri
-share/ri/3.2.0/system/Gem/GemcutterUtilities/ask_otp-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/cdesc-GemcutterUtilities.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/default_host%3f-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/fetch_otp-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/get_key_name-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/get_mfa_params-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/get_scope_params-i.ri
@@ -5200,6 +5257,8 @@ share/ri/3.2.0/system/Gem/GemcutterUtilities/set_api_key-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/sign_in-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/update_scope-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/verify_api_key-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/wait_for_otp_thread-i.ri
+share/ri/3.2.0/system/Gem/GemcutterUtilities/webauthn_verification_url-i.ri
 share/ri/3.2.0/system/Gem/GemcutterUtilities/with_response-i.ri
 share/ri/3.2.0/system/Gem/ImpossibleDependenciesError/cdesc-ImpossibleDependenciesError.ri
 share/ri/3.2.0/system/Gem/ImpossibleDependenciesError/conflicts-i.ri
@@ -5271,6 +5330,7 @@ share/ri/3.2.0/system/Gem/Installer/inherited-c.ri
 share/ri/3.2.0/system/Gem/Installer/install-i.ri
 share/ri/3.2.0/system/Gem/Installer/installation_satisfies_dependency%3f-i.ri
 share/ri/3.2.0/system/Gem/Installer/installed_specs-i.ri
+share/ri/3.2.0/system/Gem/Installer/load_plugin-i.ri
 share/ri/3.2.0/system/Gem/Installer/load_relative_enabled%3f-i.ri
 share/ri/3.2.0/system/Gem/Installer/new-c.ri
 share/ri/3.2.0/system/Gem/Installer/options-i.ri
@@ -6571,6 +6631,8 @@ share/ri/3.2.0/system/Gem/VersionOption/add_prerelease_option-i.ri
 share/ri/3.2.0/system/Gem/VersionOption/add_version_option-i.ri
 share/ri/3.2.0/system/Gem/VersionOption/cdesc-VersionOption.ri
 share/ri/3.2.0/system/Gem/VersionOption/get_platform_from_requirements-i.ri
+share/ri/3.2.0/system/Gem/WebauthnVerificationError/cdesc-WebauthnVerificationError.ri
+share/ri/3.2.0/system/Gem/WebauthnVerificationError/new-c.ri
 share/ri/3.2.0/system/Gem/activated_gem_paths-c.ri
 share/ri/3.2.0/system/Gem/add_to_load_path-c.ri
 share/ri/3.2.0/system/Gem/already_loaded%3f-c.ri
@@ -7703,9 +7765,6 @@ share/ri/3.2.0/system/Kernel/spawn-i.ri
 share/ri/3.2.0/system/Kernel/sprintf-i.ri
 share/ri/3.2.0/system/Kernel/srand-i.ri
 share/ri/3.2.0/system/Kernel/sub-i.ri
-share/ri/3.2.0/system/Kernel/syntax_suggest_original_load-i.ri
-share/ri/3.2.0/system/Kernel/syntax_suggest_original_require-i.ri
-share/ri/3.2.0/system/Kernel/syntax_suggest_original_require_relative-i.ri
 share/ri/3.2.0/system/Kernel/syscall-i.ri
 share/ri/3.2.0/system/Kernel/system-i.ri
 share/ri/3.2.0/system/Kernel/tap-i.ri
@@ -8147,6 +8206,7 @@ share/ri/3.2.0/system/Net/HTTP/proxy_user-c.ri
 share/ri/3.2.0/system/Net/HTTP/proxy_user-i.ri
 share/ri/3.2.0/system/Net/HTTP/proxyaddr-i.ri
 share/ri/3.2.0/system/Net/HTTP/proxyport-i.ri
+share/ri/3.2.0/system/Net/HTTP/put-i.ri
 share/ri/3.2.0/system/Net/HTTP/read_timeout%3d-i.ri
 share/ri/3.2.0/system/Net/HTTP/read_timeout-i.ri
 share/ri/3.2.0/system/Net/HTTP/request-i.ri
@@ -8203,7 +8263,6 @@ share/ri/3.2.0/system/Net/HTTPGatewayTimeOut/cdesc-HTTPGatewayTimeOut.ri
 share/ri/3.2.0/system/Net/HTTPGatewayTimeout/cdesc-HTTPGatewayTimeout.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/body%3d-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/body-i.ri
-share/ri/3.2.0/system/Net/HTTPGenericRequest/body_exist%3f-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/body_stream%3d-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/body_stream-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/cdesc-HTTPGenericRequest.ri
@@ -8212,7 +8271,6 @@ share/ri/3.2.0/system/Net/HTTPGenericRequest/encode_multipart_form_data-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/flush_buffer-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/inspect-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/method-i.ri
-share/ri/3.2.0/system/Net/HTTPGenericRequest/new-c.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/path-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/quote_string-i.ri
 share/ri/3.2.0/system/Net/HTTPGenericRequest/request_body_permitted%3f-i.ri
@@ -13258,23 +13316,17 @@ share/ri/3.2.0/system/Symbol/upcase-i.ri
 share/ri/3.2.0/system/SyntaxError/cdesc-SyntaxError.ri
 share/ri/3.2.0/system/SyntaxError/new-c.ri
 share/ri/3.2.0/system/SyntaxError/path-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/after_index-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/after_lines-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/before_index-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/before_lines-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/capture_neighbor_context-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/cdesc-AroundBlockScan.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/code_block-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/force_add_empty-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/force_add_hidden-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/inspect-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/lines-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/lookahead_balance_one_line-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/new-c.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/next_down-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/next_up-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/on_falling_indent-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/scan_adjacent_indent-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/scan_neighbors-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/scan_neighbors_not_empty-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/scan_while-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/skip-i.ri
-share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/start_at_next_line-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/AroundBlockScan/stop_after_kw-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/call-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/cdesc-BlockExpand.ri
@@ -13282,6 +13334,13 @@ share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/expand_indent-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/expand_neighbors-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/inspect-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/BlockExpand/new-c.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/BeforeAfterKeywordEnds/call-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/BeforeAfterKeywordEnds/cdesc-BeforeAfterKeywordEnds.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/BeforeAfterKeywordEnds/new-c.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/FallingIndentLines/call-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/FallingIndentLines/cdesc-FallingIndentLines.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/FallingIndentLines/new-c.ri
+share/ri/3.2.0/system/SyntaxSuggest/Capture/cdesc-Capture.ri
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/call-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/capture_before_after_kws-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/capture_falling_indent-i.ri
@@ -13290,6 +13349,7 @@ share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/capture_last_end_same_ind
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/cdesc-CaptureCodeContext.ri
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/code_lines-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/new-c.ri
+share/ri/3.2.0/system/SyntaxSuggest/CaptureCodeContext/sorted_lines-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/CleanDocument/call-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/CleanDocument/cdesc-CleanDocument.ri
 share/ri/3.2.0/system/SyntaxSuggest/CleanDocument/clean_sweep-i.ri
@@ -13466,6 +13526,22 @@ share/ri/3.2.0/system/SyntaxSuggest/RipperErrors/on_assign_error-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/RipperErrors/on_class_name_error-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/RipperErrors/on_param_error-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/RipperErrors/on_parse_error-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/after_index-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/after_lines-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/before_index-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/before_lines-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/cdesc-ScanHistory.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/changed%3f-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/commit_if_changed-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/current-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/lines-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/new-c.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/next_down-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/next_up-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/refresh_index-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/revert_last_commit-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/scan-i.ri
+share/ri/3.2.0/system/SyntaxSuggest/ScanHistory/stash_changes-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/UnvisitedLines/cdesc-UnvisitedLines.ri
 share/ri/3.2.0/system/SyntaxSuggest/UnvisitedLines/empty%3f-i.ri
 share/ri/3.2.0/system/SyntaxSuggest/UnvisitedLines/new-c.ri
@@ -14530,6 +14606,8 @@ share/ri/3.2.0/system/syntax/page-pattern_matching_rdoc.ri
 share/ri/3.2.0/system/syntax/page-precedence_rdoc.ri
 share/ri/3.2.0/system/syntax/page-refinements_rdoc.ri
 share/ri/3.2.0/system/win32/page-README_win32.ri
+share/ri/3.2.0/system/yjit/page-yjit_hacking_md.ri
+share/ri/3.2.0/system/yjit/page-yjit_md.ri
 @dir lib/ruby/gems/3.2.0/build_info
 @dir lib/ruby/gems/3.2.0/doc
 @dir lib/ruby/gems/3.2.0/gems/abbrev-0.1.1
@@ -14559,7 +14637,7 @@ share/ri/3.2.0/system/win32/page-README_win32.ri
 @dir lib/ruby/gems/3.2.0/gems/json-2.6.3
 @dir lib/ruby/gems/3.2.0/gems/logger-1.5.3
 @dir lib/ruby/gems/3.2.0/gems/mutex_m-0.1.2
-@dir lib/ruby/gems/3.2.0/gems/net-http-0.3.2
+@dir lib/ruby/gems/3.2.0/gems/net-http-0.4.1
 @dir lib/ruby/gems/3.2.0/gems/net-protocol-0.2.1
 @dir lib/ruby/gems/3.2.0/gems/nkf-0.1.2
 @dir lib/ruby/gems/3.2.0/gems/observer-0.1.1
@@ -14586,7 +14664,6 @@ share/ri/3.2.0/system/win32/page-README_win32.ri
 @dir lib/ruby/gems/3.2.0/gems/singleton-0.1.1
 @dir lib/ruby/gems/3.2.0/gems/stringio-3.0.4
 @dir lib/ruby/gems/3.2.0/gems/strscan-3.0.5
-@dir lib/ruby/gems/3.2.0/gems/syntax_suggest-1.0.2
 @dir lib/ruby/gems/3.2.0/gems/syslog-0.1.1
 @dir lib/ruby/gems/3.2.0/gems/tempfile-0.1.3
 @dir lib/ruby/gems/3.2.0/gems/time-0.2.2
@@ -14594,7 +14671,7 @@ share/ri/3.2.0/system/win32/page-README_win32.ri
 @dir lib/ruby/gems/3.2.0/gems/tmpdir-0.1.3
 @dir lib/ruby/gems/3.2.0/gems/tsort-0.1.1
 @dir lib/ruby/gems/3.2.0/gems/un-0.2.1
-@dir lib/ruby/gems/3.2.0/gems/uri-0.12.1
+@dir lib/ruby/gems/3.2.0/gems/uri-0.12.2
 @dir lib/ruby/gems/3.2.0/gems/weakref-0.1.2
 @dir lib/ruby/gems/3.2.0/gems/yaml-0.2.1
 @dir lib/ruby/gems/3.2.0/gems/zlib-3.0.0

@@ -1,7 +1,7 @@
 PORTNAME= ruby32-std
 RUBYSTD_VER=32
 RUBYSTD_SONAME="ruby${RUBYSTD_VER}"
-DISTVERSION= 3.2.2
+DISTVERSION= 3.2.3
 DISTNAME=ruby-${DISTVERSION}
 MASTER_SITES= https://cache.ruby-lang.org/pub/ruby/3.2/
 CATEGORIES= lang ruby
