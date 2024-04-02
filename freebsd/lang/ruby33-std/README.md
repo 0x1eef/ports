@@ -27,10 +27,11 @@ The port installs the following executables:
 
 ## Notes
 
-* On [hardenedbsd](https://hardenedbsd.org): set `hardening.harden_rtld` to 0,
-  or the build will encounter an error:
+* [hardenedbsd](https://hardenedbsd.org)
 
-        # sysctl hardening.harden_rtld=0
+    * Set `hardening.harden_rtld` to 0. Otherwise the build will fail.
+
+            # sysctl hardening.harden_rtld=0
 
 ## See also
 
