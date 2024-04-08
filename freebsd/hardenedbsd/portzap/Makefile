@@ -1,38 +1,35 @@
 PORTNAME=           portzap
-PORTVERSION=        0.5.8
+PORTVERSION=        0.7.3
 DISTVERSIONPREFIX=  v
 CATEGORIES=         hardenedbsd
 
 MAINTAINER=     0x1eef@protonmail.com
-COMMENT=        portzap is a utility for staying up to date with the HardenedBSD ports tree.
+COMMENT=        portzap manages a local copy of the hardenedbsd ports tree.
 WWW=            https://git.hardenedbsd.org/0x1eef/portzap
 LICENSE=        BSD0CLAUSE
-USE_GITHUB=     yes
-GH_ACCOUNT=     0x1eef
+USE_GITLAB=     yes
+GL_SITE=	https://git.hardenedbsd.org
+GL_ACCOUNT=     0x1eef
+GL_PROJECT=	portzap
+GL_COMMIT=	4e647bfbe4998627615b839810a32cd95320a8f8
 
+RUN_DEPENDS=	doas:security/doas
 BATCH=          yes
 NO_ARCH=        yes
 NO_BUILD=       yes
-MAN=	local/man/man1/portzap.1
-PLIST_FILES=	libexec/portzap/install-file \
-		libexec/portzap/install-directory \
-		libexec/portzap/commands/clone \
-		libexec/portzap/commands/pull \
-		libexec/portzap/commands/install \
-		libexec/portzap/functions/requirements.sh \
-		man/man1/portzap.1.gz \
-		bin/portzap
+MAN=	man/man8/portzap.8
+PLIST_FILES= bin/portzap \
+	libexec/portzap/git-changed-files \
+	libexec/portzap/git-removed-files \
+	libexec/portzap/git-rev \
+	libexec/portzap/portzap-clone \
+	libexec/portzap/portzap-install \
+	libexec/portzap/portzap-pull \
+	libexec/portzap/portzap-setup \
+	man/man8/portzap.8.gz \
+	%%DATADIR%%/doas.conf
+
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/portzap
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/portzap/commands
-	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/portzap/functions
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/functions/requirements.sh ${STAGEDIR}${PREFIX}/libexec/portzap/functions/
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/commands/clone ${STAGEDIR}${PREFIX}/libexec/portzap/commands/
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/commands/pull ${STAGEDIR}${PREFIX}/libexec/portzap/commands/
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/commands/install ${STAGEDIR}${PREFIX}/libexec/portzap/commands/
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/install-file ${STAGEDIR}${PREFIX}/libexec/portzap/
-	${INSTALL_SCRIPT} ${WRKSRC}/libexec/portzap/install-directory ${STAGEDIR}${PREFIX}/libexec/portzap/
-	${INSTALL_SCRIPT} ${WRKSRC}/man/man1/portzap.1 ${STAGEDIR}${PREFIX}/man/man1/portzap.1
-	${INSTALL_SCRIPT} ${WRKSRC}/bin/portzap ${STAGEDIR}${PREFIX}/bin/
+	${MAKE} -C ${WRKSRC} PREFIX=${STAGEDIR}${PREFIX} install
 
 .include <bsd.port.mk>
