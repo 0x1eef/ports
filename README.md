@@ -26,4 +26,4 @@ None so far.
 
 * [GitHub](https://github.com/0x1eef/ports)
 * [GitLab](https://gitlab.com/0x1eef/ports)
-* [hardenedbsd (git.hardenedbsd.org)](https://git.hardenedbsd.org/0x1eef/ports)
+* [https://git.hardenedbsd.org](https://git.hardenedbsd.org/0x1eef/ports)
