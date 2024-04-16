@@ -15,8 +15,8 @@ A collection of unofficial FreeBSD / OpenBSD ports.
 * [mail/hydroxide](freebsd/mail/hydroxide) <br>
   A third-party, open-source ProtonMail bridge.
 * [hardenedbsd/portzap](freebsd/hardenedbsd/portzap) <br>
-  A utility for managing a local copy of the
-  [hardenedbsd ports collection](https://git.hardenedbsd.org/hardenedbsd/ports).
+  A utility that manages a local copy of the
+  [hardenedbsd ports tree](https://git.hardenedbsd.org/hardenedbsd/ports).
 
 ### OpenBSD
 
