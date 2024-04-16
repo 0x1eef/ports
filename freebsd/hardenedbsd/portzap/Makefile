@@ -19,7 +19,6 @@ RUN_DEPENDS=	doas:security/doas \
 BATCH=          yes
 NO_ARCH=        yes
 NO_BUILD=       yes
-MAN=	man/man8/portzap.8
 PLIST_FILES= bin/portzap \
 	libexec/portzap/git-changed-files \
 	libexec/portzap/git-removed-files \
