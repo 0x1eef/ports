@@ -1,7 +1,7 @@
 PORTNAME=           portzap
 PORTVERSION=        0.8.1
 DISTVERSIONPREFIX=  v
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=         hardenedbsd
 
 MAINTAINER=     0x1eef@protonmail.com
