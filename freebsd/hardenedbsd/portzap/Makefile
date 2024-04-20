@@ -1,5 +1,5 @@
 PORTNAME=           portzap
-PORTVERSION=        0.9.4
+PORTVERSION=        0.10.0
 DISTVERSIONPREFIX=  v
 CATEGORIES=         hardenedbsd
 
