@@ -15,7 +15,7 @@ USE_GITLAB=     yes
 GL_SITE=	https://git.hardenedbsd.org
 GL_ACCOUNT=     0x1eef
 GL_PROJECT=	portzap
-GL_COMMIT=	b16722c219339b4b10e74e1ba1f193fc51c03f40
+GL_COMMIT=	6ed089e6fbee43e2544803e259584bcf6ac60978
 
 BATCH=          yes
 NO_ARCH=        yes
