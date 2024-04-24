@@ -8,7 +8,7 @@ A collection of unofficial FreeBSD / OpenBSD ports.
 
 * [devel/ruby-shims](freebsd/devel/ruby-shims) <br>
   Brings the OpenBSD port of the same name to FreeBSD.
-* [lang/ruby32-std](freebsd/lang/ruby32-std) <br>
+* [lang/ruby32](freebsd/lang/ruby32) <br>
   Provides a standard installation of Ruby 3.2.
 * [lang/ruby33](freebsd/lang/ruby33) <br>
   Provides a standard installation of Ruby 3.3.
