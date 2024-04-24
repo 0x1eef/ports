@@ -1,8 +1,9 @@
 ## About
 
-The lang/ruby33-std port provides a standard installation of the
-Ruby 3.3 programming language on FreeBSD. <br>
-The port installs Ruby's
+The lang/ruby33 FreeBSD port provides a standard installation of
+Ruby 3.3 that replaces the
+[official lang/ruby33 port](https://github.com/freebsd/freebsd-ports/tree/main/lang/ruby33).
+This port installs Ruby's
 [default and bundled gems](https://www.stdgems.org),
 and includes their executables.
 
@@ -39,4 +40,5 @@ The port installs the following executables:
 
 ## Changelog
 
+* 2024/04/23: add v3.3.1
 * 2023/12/25: add v3.3.0
