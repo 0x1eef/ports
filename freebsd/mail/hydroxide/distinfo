@@ -1,5 +1,5 @@
-TIMESTAMP = 1670126999
-SHA256 (go/mail_hydroxide/hydroxide-v0.2.24/v0.2.24.mod) = cad8f41e724b61a36c03957ce007bcb16c201c2babeb0c979b15b37b5ee97a35
-SIZE (go/mail_hydroxide/hydroxide-v0.2.24/v0.2.24.mod) = 805
-SHA256 (go/mail_hydroxide/hydroxide-v0.2.24/v0.2.24.zip) = 6ba3a7621eda757cde2cbce85c6274ca52d087ca31dcf488c0ae4c8214408d2b
-SIZE (go/mail_hydroxide/hydroxide-v0.2.24/v0.2.24.zip) = 59786
+TIMESTAMP = 1733643483
+SHA256 (go/mail_hydroxide/hydroxide-v0.2.29/v0.2.29.mod) = 94499bba0eae112489fdb6ac00bc1e976c3497f2b572074ae71e3fa720a30a59
+SIZE (go/mail_hydroxide/hydroxide-v0.2.29/v0.2.29.mod) = 706
+SHA256 (go/mail_hydroxide/hydroxide-v0.2.29/v0.2.29.zip) = 79b39b1bf52dd296840ce78c211a1905410f394ddd0c9bdfef7c717eed5c75d9
+SIZE (go/mail_hydroxide/hydroxide-v0.2.29/v0.2.29.zip) = 61403

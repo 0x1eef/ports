@@ -1,5 +1,5 @@
 PORTNAME=           hydroxide
-PORTVERSION=        0.2.24
+PORTVERSION=        0.2.29
 DISTVERSIONPREFIX=  v
 CATEGORIES=         mail
 
